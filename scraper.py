@@ -1,21 +1,15 @@
 
 
-
-
 import re
+import requests
 from pathlib import Path
 from datetime import datetime
 
 from bs4 import BeautifulSoup
 from ics import Calendar, Event
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import time
+URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
 
-
-
-URL = "https://www.gomotionapp.com/team/assda/page/practice-schedule"
 
 GROUPS = [
     "S1",
@@ -195,42 +189,15 @@ def save_calendars(calendars):
         print(f"Created {filename}")
 
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import time
-
 
 
 def fetch_page():
 
-    options = Options()
+    response = requests.get(URL, timeout=30)
+    response.raise_for_status()
 
-    options.add_argument("--headless")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
+    return response.text
 
-    driver = webdriver.Chrome(options=options)
-
-    try:
-        driver.get(URL)
-
-        time.sleep(15)
-
-        # Save iframe info for debugging
-        frames = driver.find_elements("tag name", "iframe")
-
-        with open("calendars/iframes.txt", "w") as f:
-            f.write(f"IFRAME COUNT: {len(frames)}\n")
-
-            for i, frame in enumerate(frames):
-                f.write(f"\nFRAME {i}\n")
-                f.write(str(frame.get_attribute("src")))
-                f.write("\n")
-
-        return driver.page_source
-
-    finally:
-        driver.quit()
 
 
 
@@ -238,19 +205,3 @@ def fetch_page():
 def main():
 
     html = fetch_page()
-
-    with open("calendars/page.html", "w") as f:
-        f.write(html)
-
-    text = extract_text(html)
-
-    with open("calendars/page.txt", "w") as f:
-        f.write(text)
-
-    calendars = build_events_from_text(text)
-
-    save_calendars(calendars)
-
-
-if __name__ == "__main__":
-    main()
