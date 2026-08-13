@@ -281,30 +281,30 @@ def main():
 
         for i, row in enumerate(rows):
 
-    if len(row) > 3 and "Monday" in " ".join(row):
+        if len(row) > 3 and "Monday" in " ".join(row):
         current_dates = row[3:10]
         continue
 
-    team = row[1] if len(row) > 1 else ""
+        team = row[1] if len(row) > 1 else ""
 
-    if team in GROUPS:
+        if team in GROUPS:
 
-        if team in {"S1", "S2", "Blue"}:
+            if team in {"S1", "S2", "Blue"}:
             schedule_row = rows[i + 1]
-        else:
+            else:
             schedule_row = row
 
-        times = schedule_row[3:10]
+            times = schedule_row[3:10]
 
-    for date_text, time_text in zip(current_dates, times):
+        for date_text, time_text in zip(current_dates, times):
 
-    if not time_text:
+            if not time_text:
                 continue
 
-    if "OFF" in time_text.upper():
+            if "OFF" in time_text.upper():
                 continue
 
-    events.append({
+            events.append({
                 "team": team,
                 "date": date_text,
                 "practice": time_text
