@@ -289,8 +289,25 @@ def main():
 
         team = row[1] if len(row) > 1 else ""
 
-        if team in {"S1", "S2", "S3", "Blue", "AG1", "AG2"}:
-            print("TEAM:", team)
+        GROUPS = {"S1", "S2", "S3", "Blue", "AG1", "AG2"}
+
+    if team in GROUPS:
+
+    # S1, S2, Blue store times on next row
+    if team in {"S1", "S2", "Blue"}:
+        schedule_row = rows[i + 1]
+
+    # S3, AG1, AG2 store times on same row
+    else:
+        schedule_row = row
+
+    times = schedule_row[3:10]
+
+    print()
+    print("TEAM:", team)
+    print("DATES:", current_dates)
+    print("TIMES:", times)
+        
 
     dump_rows(soup)
 
