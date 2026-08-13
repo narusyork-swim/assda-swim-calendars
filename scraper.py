@@ -313,14 +313,15 @@ def main():
 
         if "OFF" in time_text.upper():
             continue
+            
+    events.append({"team": team,
+                   "date": date_text,
+                   "practice": time_text})
+    print(len(events))
 
-        events.append({
-            "team": team,
-            "date": date_text,
-            "practice": time_text})
-    
-    for event in events:
-            print(event)
+    print("TOTAL EVENTS:", len(events))
+
+       
 
 
 
