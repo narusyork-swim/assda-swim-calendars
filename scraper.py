@@ -290,9 +290,9 @@ def main():
         if team in GROUPS:
 
             if team in {"S1", "S2", "Blue"}:
-            schedule_row = rows[i + 1]
+                schedule_row = rows[i + 1]
             else:
-            schedule_row = row
+                schedule_row = row
 
             times = schedule_row[3:10]
 
