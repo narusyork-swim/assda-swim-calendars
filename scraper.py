@@ -244,6 +244,23 @@ def fetch_page():
 
 
 
+def dump_rows(soup):
+
+    table = soup.find("table", class_="waffle")
+
+    rows = table.find_all("tr")
+
+    for i, row in enumerate(rows[:30]):
+        cells = row.find_all(["td", "th"])
+
+        values = [
+            c.get_text(" ", strip=True)
+            for c in cells
+        ]
+
+        print(i, values)
+
+
 def main():
 
     html = fetch_page()
@@ -253,14 +270,12 @@ def main():
     with open("calendars/page.html", "w") as f:
         f.write(html)
 
-    text = html
+    soup = BeautifulSoup(html, "html.parser")
+
+    dump_rows(soup)
 
     with open("calendars/page.txt", "w") as f:
-        f.write(text)
-
-    calendars = build_events_from_text(text)
-
-    save_calendars(calendars)
+        f.write(html)
 
 
 if __name__ == "__main__":
