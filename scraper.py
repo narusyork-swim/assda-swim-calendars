@@ -8,6 +8,7 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from ics import Calendar, Event
 
+
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
 
 GROUPS = [
@@ -190,20 +191,34 @@ def save_calendars(calendars):
 
 
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import time
+
 def fetch_page():
 
-    response = requests.get(
-        URL,
-        headers={
-            "User-Agent":
-            "Mozilla/5.0"
-        },
-        timeout=30,
-    )
+    options = Options()
 
-    response.raise_for_status()
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
 
-    return response.text
+    driver = webdriver.Chrome(options=options)
+
+    try:
+
+        driver.get(URL)
+
+        time.sleep(15)
+
+        return driver.page_source
+
+    finally:
+        driver.quit()
+
+
+
 
 
 
