@@ -7,11 +7,10 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 from ics import Calendar, Event
 
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
-
-
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
 
@@ -195,11 +194,6 @@ def save_calendars(calendars):
 
 
 
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-import time
-
 def fetch_page():
 
     options = Options()
@@ -214,12 +208,20 @@ def fetch_page():
 
         driver.get(URL)
 
-        time.sleep(15)
+        print("Waiting for sheet to load...")
 
-        return driver.page_source
+        time.sleep(20)
+
+        html = driver.page_source
+
+        print("HTML LENGTH:", len(html))
+
+        return html
 
     finally:
         driver.quit()
+
+
 
 
 
@@ -246,10 +248,12 @@ def main():
         f.write(html)
 
    
-    text = html
 
-    with open("calendars/page.txt", "w") as f:
-        f.write(text)
+text = html
+
+with open("calendars/page.txt", "w") as f:
+    f.write(text)
+
 
     calendars = build_events_from_text(text)
 
