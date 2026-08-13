@@ -295,15 +295,28 @@ def main():
                 schedule_row = row
 
             times = schedule_row[3:10]
-for date_text, time_text in zip(current_dates, times):
+            if team in GROUPS:
 
-    if not time_text:
-        continue
+    if team in {"S1", "S2", "Blue"}:
+        schedule_row = rows[i + 1]
+    else:
+        schedule_row = row
 
-    if "OFF" in time_text.upper():
-        continue
+    times = schedule_row[3:10]
 
-    print(team, date_text, time_text)
+    print("TEAM:", team)
+    print("TIMES:", times)
+
+    for date_text, time_text in zip(current_dates, times):
+
+        if not time_text:
+            continue
+
+        if "OFF" in time_text.upper():
+            continue
+
+        print(team, date_text, time_text)
+
 
     dump_rows(soup)
 
