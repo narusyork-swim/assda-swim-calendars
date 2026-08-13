@@ -318,6 +318,10 @@ def main():
             "team": team,
             "date": date_text,
             "practice": time_text})
+    
+    for event in events:
+            print(event)
+
 
 
 
