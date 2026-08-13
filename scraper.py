@@ -209,7 +209,13 @@ def fetch_page():
 
     print("STATUS:", response.status_code)
 
-    response.raise_for_status()
+    
+if response.status_code != 200:
+    print(response.text[:2000])
+    raise Exception(
+        f"HTTP {response.status_code}"
+    )
+
 
     return response.text
 
