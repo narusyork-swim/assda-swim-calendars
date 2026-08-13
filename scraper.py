@@ -239,21 +239,14 @@ def main():
     html = fetch_page()
 
     print("HTML LENGTH:", len(html))
-    print(html[:1000])
-
-
-
 
     with open("calendars/page.html", "w") as f:
         f.write(html)
 
-   
+    text = html
 
-text = html
-
-with open("calendars/page.txt", "w") as f:
-    f.write(text)
-
+    with open("calendars/page.txt", "w") as f:
+        f.write(text)
 
     calendars = build_events_from_text(text)
 
@@ -262,7 +255,3 @@ with open("calendars/page.txt", "w") as f:
 
 if __name__ == "__main__":
     main()
-
-
-
-
