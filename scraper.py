@@ -15,7 +15,7 @@ import time
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
 
-GROUPS = {"S1", "S2", "S3", "Blue", "AG1", "AG2"}
+
 
 
 
@@ -265,10 +265,6 @@ def main():
 
     table = soup.find("table", class_="waffle")
 
-    if table is None:
-        print("ERROR: table not found")
-        return
-
     rows = []
 
     for tr in table.find_all("tr"):
@@ -277,6 +273,8 @@ def main():
             for c in tr.find_all(["td", "th"])
         ]
         rows.append(values)
+
+    GROUPS = {"S1", "S2", "S3", "Blue", "AG1", "AG2"}
 
     current_dates = None
 
@@ -289,25 +287,17 @@ def main():
 
         team = row[1] if len(row) > 1 else ""
 
-        GROUPS = {"S1", "S2", "S3", "Blue", "AG1", "AG2"}
+        if team in GROUPS:
 
-    if team in GROUPS:
+            if team in {"S1", "S2", "Blue"}:
+                schedule_row = rows[i + 1]
+            else:
+                schedule_row = row
 
-    # S1, S2, Blue store times on next row
-        if team in {"S1", "S2", "Blue"}:
-            schedule_row = rows[i + 1]
+            times = schedule_row[3:10]
 
-    # S3, AG1, AG2 store times on same row
-    else:
-        schedule_row = row
-
-    times = schedule_row[3:10]
-
-    print()
-    print("TEAM:", team)
-    print("DATES:", current_dates)
-    print("TIMES:", times)
-        
+            print("TEAM:", team)
+            print("TIMES:", times)
 
     dump_rows(soup)
 
