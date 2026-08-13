@@ -15,14 +15,46 @@ import time
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
 
-GROUPS = [
-    "S1",
-    "S2",
-    "S3",
-    "Blue",
-    "AG1",
-    "AG2",
-]
+GROUPS = {"S1", "S2", "S3", "Blue", "AG1", "AG2"}
+
+rows = []
+
+for tr in table.find_all("tr"):
+    values = [
+        c.get_text(" ", strip=True)
+        for c in tr.find_all(["td", "th"])
+    ]
+    rows.append(values)
+
+current_dates = None
+events = []
+
+for i, row in enumerate(rows):
+
+    # date header
+    if len(row) > 3 and "Monday" in row[3]:
+        current_dates = row[3:10]
+        continue
+
+    team = row[1] if len(row
+
+    if team not in GROUPS:
+        continue
+
+    # S3/AG1/AG2 schedules on same row
+    if any("pm" in c.lower() or "am" in c.lower() for c in row):
+
+        schedule_row = row
+
+    else:
+        # S1/S2/Blue schedules on next row
+        schedule_row = rows[i + 1]
+
+    times = schedule_row[3:10]
+
+    print(team)
+    print(current_dates)
+    print(times)
 
 
 OUTPUT_DIR = Path("calendars")
