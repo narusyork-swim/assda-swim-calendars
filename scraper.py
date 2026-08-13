@@ -282,8 +282,8 @@ def main():
     for i, row in enumerate(rows):
 
         if len(row) > 3 and "Monday" in " ".join(row):
-        current_dates = row[3:10]
-        continue
+            current_dates = row[3:10]
+            continue
 
         team = row[1] if len(row) > 1 else ""
 
