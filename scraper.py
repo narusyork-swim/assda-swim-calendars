@@ -296,15 +296,15 @@ def main():
 
         times = schedule_row[3:10]
 
-        for date_text, time_text in zip(current_dates, times):
+    for date_text, time_text in zip(current_dates, times):
 
-            if not time_text:
+    if not time_text:
                 continue
 
-            if "OFF" in time_text.upper():
+    if "OFF" in time_text.upper():
                 continue
 
-            events.append({
+    events.append({
                 "team": team,
                 "date": date_text,
                 "practice": time_text
