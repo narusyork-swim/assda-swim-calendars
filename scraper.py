@@ -191,16 +191,21 @@ def save_calendars(calendars):
         print(f"Created {filename}")
 
 
+
+
+
 def main():
 
     html = fetch_page()
 
+    with open("calendars/page.html", "w") as f:
+        f.write(html)
+
     text = extract_text(html)
+
+    with open("calendars/page.txt", "w") as f:
+        f.write(text)
 
     calendars = build_events_from_text(text)
 
     save_calendars(calendars)
-
-
-if __name__ == "__main__":
-    main()
