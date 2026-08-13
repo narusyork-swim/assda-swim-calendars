@@ -30,10 +30,10 @@ current_dates = None
 
 for i, row in enumerate(rows):
 
-    if len(row) > 3 and "Monday" in row[3]:
-        current_dates = row[3:10]
-        print("ent_dates)
-        continue
+   if len(row) > 3 and "Monday" in " ".join(row):
+    current_dates = row[3:10]
+    print("DATES:", current_dates)
+    continue
 
     team = row[1] if len(row) > 1 else ""
 
