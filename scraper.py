@@ -273,54 +273,46 @@ def main():
             for c in tr.find_all(["td", "th"])
         ]
         rows.append(values)
-
     GROUPS = {"S1", "S2", "S3", "Blue", "AG1", "AG2"}
 
-    current_dates = None
+events = []
 
-    for i, row in enumerate(rows):
+current_dates = None
 
-        if len(row) > 3 and "Monday" in " ".join(row):
-            current_dates = row[3:10]
-            print("DATES:", current_dates)
-            continue
+for i, row in enumerate(rows):
 
-        team = row[1] if len(row) > 1 else ""
+    if len(row) > 3 and "Monday" in " ".join(row):
+        current_dates = row[3:10]
+        continue
 
-        if team in GROUPS:
+    team = row[1] if len(row) > 1 else ""
 
-            if team in {"S1", "S2", "Blue"}:
-                schedule_row = rows[i + 1]
-            else:
-                schedule_row = row
+    if team in GROUPS:
 
-            times = schedule_row[3:10]
-            if team in GROUPS:
-                if team in {"S1", "S2", "Blue"}:
-                    schedule_row = rows[i + 1]
-                else:
-                    schedule_row = row
+        if team in {"S1", "S2", "Blue"}:
+            schedule_row = rows[i + 1]
+        else:
+            schedule_row = row
 
-    times = schedule_row[3:10]
+        times = schedule_row[3:10]
 
-    print("TEAM:", team)
-    print("TIMES:", times)
+        for date_text, time_text in zip(current_dates, times):
 
-    for date_text, time_text in zip(current_dates, times):
+            if not time_text:
+                continue
 
-        if not time_text:
-            continue
+            if "OFF" in time_text.upper():
+                continue
 
-        if "OFF" in time_text.upper():
-            continue
-            
-    events.append({"team": team,
-                   "date": date_text,
-                   "practice": time_text})
-    print(len(events))
+            events.append({
+                "team": team,
+                "date": date_text,
+                "practice": time_text
+            })
 
     print("TOTAL EVENTS:", len(events))
-
+    for e in events[:10]:
+        print(e)
        
 
 
