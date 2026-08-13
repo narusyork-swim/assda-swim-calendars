@@ -1,5 +1,4 @@
 
-
 import re
 import requests
 from pathlib import Path
@@ -7,6 +6,11 @@ from datetime import datetime
 
 from bs4 import BeautifulSoup
 from ics import Calendar, Event
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import time
+
 
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
