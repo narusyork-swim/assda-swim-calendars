@@ -314,7 +314,11 @@ def main():
         if "OFF" in time_text.upper():
             continue
 
-        print(team, date_text, time_text)
+        events.append({
+            "team": team,
+            "date": date_text,
+            "practice": time_text})
+
 
 
     dump_rows(soup)
