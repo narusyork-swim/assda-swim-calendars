@@ -200,6 +200,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 
+
 def fetch_page():
 
     options = Options()
@@ -213,12 +214,24 @@ def fetch_page():
     try:
         driver.get(URL)
 
-        time.sleep(10)
+        time.sleep(15)
+
+        # Save iframe info for debugging
+        frames = driver.find_elements("tag name", "iframe")
+
+        with open("calendars/iframes.txt", "w") as f:
+            f.write(f"IFRAME COUNT: {len(frames)}\n")
+
+            for i, frame in enumerate(frames):
+                f.write(f"\nFRAME {i}\n")
+                f.write(str(frame.get_attribute("src")))
+                f.write("\n")
 
         return driver.page_source
 
     finally:
         driver.quit()
+
 
 
 
