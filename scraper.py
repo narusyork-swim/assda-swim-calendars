@@ -1,12 +1,18 @@
 
+
+
+
 import re
 from pathlib import Path
 from datetime import datetime
-from collections import defaultdict
 
-import requests
 from bs4 import BeautifulSoup
 from ics import Calendar, Event
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import time
+
 
 
 URL = "https://www.gomotionapp.com/team/assda/page/practice-schedule"
@@ -25,12 +31,7 @@ OUTPUT_DIR = Path("calendars")
 OUTPUT_DIR.mkdir(exist_ok=True)
 
 
-def fetch_page():
 
-    response = requests.get(URL, timeout=30)
-    response.raise_for_status()
-
-    return response.text
 
 
 def extract_text(html):
@@ -179,6 +180,9 @@ def build_events_from_text(text):
     return calendars
 
 
+
+
+
 def save_calendars(calendars):
 
     for group, calendar in calendars.items():
@@ -191,6 +195,30 @@ def save_calendars(calendars):
         print(f"Created {filename}")
 
 
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+import time
+
+
+def fetch_page():
+
+    options = Options()
+
+    options.add_argument("--headless")
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Chrome(options=options)
+
+    try:
+        driver.get(URL)
+
+        time.sleep(10)
+
+        return driver.page_source
+
+    finally:
+        driver.quit()
 
 
 
@@ -211,9 +239,5 @@ def main():
     save_calendars(calendars)
 
 
-
-
 if __name__ == "__main__":
     main()
-
-
