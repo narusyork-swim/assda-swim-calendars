@@ -27,34 +27,22 @@ for tr in table.find_all("tr"):
     rows.append(values)
 
 current_dates = None
-events = []
 
 for i, row in enumerate(rows):
 
-    # date header
     if len(row) > 3 and "Monday" in row[3]:
         current_dates = row[3:10]
+        print("ent_dates)
         continue
 
-    team = row[1] if len(row
+    team = row[1] if len(row) > 1 else ""
 
-    if team not in GROUPS:
-        continue
+    if team in {"S1", "S2", "S3", "Blue", "AG1", "AG2"}:
 
-    # S3/AG1/AG2 schedules on same row
-    if any("pm" in c.lower() or "am" in c.lower() for c in row):
+        print("TEAM:", team)
 
-        schedule_row = row
 
-    else:
-        # S1/S2/Blue schedules on next row
-        schedule_row = rows[i + 1]
 
-    times = schedule_row[3:10]
-
-    print(team)
-    print(current_dates)
-    print(times)
 
 
 OUTPUT_DIR = Path("calendars")
