@@ -10,6 +10,7 @@ from ics import Calendar, Event
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
 import time
 
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
@@ -194,6 +195,8 @@ def save_calendars(calendars):
 
 
 
+
+
 def fetch_page():
 
     options = Options()
@@ -208,13 +211,20 @@ def fetch_page():
 
         driver.get(URL)
 
-        print("Waiting for sheet to load...")
+        time.sleep(10)
 
-        time.sleep(20)
+        iframe = driver.find_element(
+            By.ID,
+            "pageswitcher-content"
+        )
+
+        driver.switch_to.frame(iframe)
+
+        time.sleep(10)
 
         html = driver.page_source
 
-        print("HTML LENGTH:", len(html))
+        print("IFRAME HTML LENGTH:", len(html))
 
         return html
 
