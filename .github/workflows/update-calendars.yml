@@ -1,9 +1,11 @@
 
-
 name: Update Calendars
 
 on:
   workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   update:
@@ -23,3 +25,16 @@ jobs:
       - name: Run scraper
         run: |
           python scraper.py
+
+      - name: Commit generated files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add calendars/
+
+          git diff --cached --quiet && exit 0
+
+          git commit -m "Update calendars"
+          git push
+
