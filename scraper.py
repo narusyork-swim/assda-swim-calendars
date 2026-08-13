@@ -209,3 +209,11 @@ def main():
     calendars = build_events_from_text(text)
 
     save_calendars(calendars)
+
+
+
+
+if __name__ == "__main__":
+    main()
+
+
