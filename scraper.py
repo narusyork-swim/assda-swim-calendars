@@ -200,8 +200,12 @@ def fetch_page():
 
 
 
-
-
 def main():
 
     html = fetch_page()
+
+    print("HTML LENGTH:", len(html))
+    print(html[:1000])
+
+
+
