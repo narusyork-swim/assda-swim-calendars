@@ -279,7 +279,7 @@ def main():
 
     current_dates = None
 
-    for i, row in enumerate(rows):
+        for i, row in enumerate(rows):
 
     if len(row) > 3 and "Monday" in " ".join(row):
         current_dates = row[3:10]
