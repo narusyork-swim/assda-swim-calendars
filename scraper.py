@@ -17,30 +17,6 @@ URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0
 
 GROUPS = {"S1", "S2", "S3", "Blue", "AG1", "AG2"}
 
-rows = []
-
-for tr in table.find_all("tr"):
-    values = [
-        c.get_text(" ", strip=True)
-        for c in tr.find_all(["td", "th"])
-    ]
-    rows.append(values)
-
-current_dates = None
-
-for i, row in enumerate(rows):
-
-   if len(row) > 3 and "Monday" in " ".join(row):
-    current_dates = row[3:10]
-    print("DATES:", current_dates)
-    continue
-
-    team = row[1] if len(row) > 1 else ""
-
-    if team in {"S1", "S2", "S3", "Blue", "AG1", "AG2"}:
-
-        print("TEAM:", team)
-
 
 
 
@@ -267,6 +243,7 @@ def fetch_page():
 def dump_rows(soup):
 
     table = soup.find("table", class_="waffle")
+    
 
     rows = table.find_all("tr")
 
@@ -280,17 +257,40 @@ def dump_rows(soup):
 
         print(i, values)
 
-
 def main():
 
     html = fetch_page()
 
-    print("HTML LENGTH:", len(html))
-
-    with open("calendars/page.html", "w") as f:
-        f.write(html)
-
     soup = BeautifulSoup(html, "html.parser")
+
+    table = soup.find("table", class_="waffle")
+
+    if table is None:
+        print("ERROR: table not found")
+        return
+
+    rows = []
+
+    for tr in table.find_all("tr"):
+        values = [
+            c.get_text(" ", strip=True)
+            for c in tr.find_all(["td", "th"])
+        ]
+        rows.append(values)
+
+    current_dates = None
+
+    for i, row in enumerate(rows):
+
+        if len(row) > 3 and "Monday" in " ".join(row):
+            current_dates = row[3:10]
+            print("DATES:", current_dates)
+            continue
+
+        team = row[1] if len(row) > 1 else ""
+
+        if team in {"S1", "S2", "S3", "Blue", "AG1", "AG2"}:
+            print("TEAM:", team)
 
     dump_rows(soup)
 
