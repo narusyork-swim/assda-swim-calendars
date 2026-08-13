@@ -295,7 +295,7 @@ def main():
 
     # S1, S2, Blue store times on next row
         if team in {"S1", "S2", "Blue"}:
-        schedule_row = rows[i + 1]
+            schedule_row = rows[i + 1]
 
     # S3, AG1, AG2 store times on same row
     else:
