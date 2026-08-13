@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://evolus.vn/Namespaces/WebUI/1.0"
+    xmlns:cms="http://www.teamunify.com/Namespaces/CMS/1.5">
+    <head profile="http://www.w3.org/2005/10/profile">
+        <title>Gold Medal Swim Club - Practice Schedule</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+        <script type="text/javascript">window.__widgetUseEarlyInitPhase = true;</script>
+
+<link rel="stylesheet" href="/framework-styles.pack.css?b=1786571686724" />
+<link rel="stylesheet" href="/framework-standard-templates.pack.css?b=1786571686724" />
+<script type="application/javascript" src="/framework-standard-templates.pack.js?b=1786571686724"></script>
+<script type="application/javascript" src="/framework-standard.pack.js?b=1786571686724"></script>
+<script type="text/javascript">var CONTEXT = {
+
+                teamAlias: "assda",
+                teamName: "Gold Medal Swim Club",
+                teamId: 8413,
+                teamTimeZone: "US/Arizona",
+                cmsTemplateSuiteId: "1",
+                cmsTemplateVariantName: "ucla-blue",
+                cmsTemplateVariantColor: "#2D68C4",
+                isShowSSOLoginNotify: false,
+                shouldCreateNewAccEnabled: false,
+                useCMS: true,
+
+
+                isShowTeamRegistrationLink: true,
+                teamRegistrationLinkLabel: "Continue to Team Registration",
+                isTeamRegistrationCustomLinkEnabled: false,
+                teamRegistrationLink: "\/team\/assda\/controller\/cms\/admin\/index#\/team-registration",
+                publicTeamRegistrationLink: "\/team\/assda\/page\/team-registration",
+                isShowClassRegistrationLink: true,
+                classRegistrationLinkLabel: "Continue to Lessons Registration",
+                isClassRegistrationCustomLinkEnabled: false,
+                classRegistrationLink: "\/team\/assda\/controller\/cms\/admin\/index#\/my-class-registration",
+                publicClassRegistrationLink: "\/team\/assda\/page\/system\/classreg-shopping",
+                isShowBookingRegistrationLink: false,
+                bookingRegistrationLinkLabel: "Continue to Booking Selection",
+                isBookingRegistrationCustomLinkEnabled: false,
+                bookingRegistrationLink: "\/team\/assda\/controller\/cms\/admin\/index#\/my-bookings-registration",
+                publicBookingRegistrationLink: "\/team\/assda\/page\/system\/bookingreg-shopping",
+
+
+                teamLogoUrl: "\/assda\/team-logo\/default\/small-logo_000591-tsm-med.png",
+                teamLogoMobileUrl: "\/assda\/team-logo\/mobile\/small-logo-000591-tsm-thumb_079661-t-thumb.png",
+                teamLogoEmailUrl: "\/assda\/team-logo\/email\/small-logo-000591-tsm-thumb_002279-t-thumb.png",
+
+
+                locale: "en_US",
+                localeUrl: "/v2/js/languages/se_studio/en_US.json",
+                system: true
+            };
+ServiceFactory.requestEnhancer = function (request) {
+           request.setRequestHeader("X-TU-Team", CONTEXT.teamAlias);
+           request.setRequestHeader("X-Rio-Client-TimeZone", (typeof(moment) != "undefined" && typeof(moment.tz) != "undefined") ? moment.tz.guess() : "");
+       };
+var __themeData = {
+                theme_primary_color: "#2D68C4",
+                theme_name: "ucla-blue"
+            };
+var SERVER_FLAVOR = "SE";
+
+var LOCALE = {
+    language: "en-US",
+    currencySign: "$",
+    currencyCode: "USD"
+};
+</script>
+
+<link rel="stylesheet" href="/cms-widgets-templates.pack.css?b=1786571686724" />
+<script type="application/javascript" src="/cms-widgets-templates.pack.js?b=1786571686724"></script>
+<script type="application/javascript" src="/cms-widgets.pack.js?b=1786571686724"></script>
+<link rel="stylesheet" href="/cms/stylesheet/common.less?b=1786571686724" />
+
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js"></script>
+    <script>
+       window.dataLayer = window.dataLayer || [];
+       function gtag(){dataLayer.push(arguments);}
+       gtag('js', new Date());
+
+              gtag('event', 'pageview', {});
+    </script>
+<!-- End Google tag (gtag.js) -->
+
+<meta name="theme-color" content="#2D68C4" />
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NBHQS26');</script>
+<!-- End Google Tag Manager -->
+<script type="text/javascript">
+var SITE_STYLE_MAP = {
+  "fontSize" : "default",
+  "faviconPath" : "/assda/site-settings/favicon/small-logo-for-site_032289-t-thumb.png",
+  "mobilenav_showTeamName" : "true",
+  "mobilenav_showTeamLogo" : "true",
+  "mobilenav_textColor" : "#071C94FF",
+  "backgroundRepeat" : "no-repeat",
+  "backgroundAttachment" : "fixed",
+  "backgroundSize" : "contain",
+  "backgroundImage" : "/assda/site-settings/background/50677369987-30f9bb1676-k_002006.jpg",
+  "backgroundColor" : "#052D6EFF",
+  "mobilenav_backgroundRepeat" : "repeat",
+  "mobilenav_backgroundAttachment" : "scroll",
+  "mobilenav_backgroundSize" : "auto",
+  "mobilenav_backgroundImage" : "/assda/site-settings/background-mobilenav/50677369987-30f9bb1676-k_039852.jpg",
+  "mobilenav_backgroundColor" : "#FFFFFF00"
+};
+</script>
+<link rel="icon" type="image/x-icon" href="/assda/site-settings/favicon/small-logo-for-site_032289-t-thumb.png">
+<meta property="og:image" content="https://www.gomotionapp.com/assda/team-logo/default/small-logo_000591-tsm-small.png">
+<meta property="og:image:secure_url" content="https://www.gomotionapp.com/assda/team-logo/default/small-logo_000591-tsm-small.png">
+<meta property="og:image:width" content="200" />
+<meta property="og:image:height" content="200" />
+<meta name="twitter:image" content="https://www.gomotionapp.com/assda/team-logo/default/small-logo_000591-tsm-small.png">
+<meta property="og:title" content="Gold Medal Swim Club - Practice Schedule" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.gomotionapp.com/team/assda/page/practice-schedule" />
+<script type="application/javascript" src="/team/assda/api/registry.js?name=coreService"></script>
+<link rel="stylesheet" href="/cms/stylesheet/main-navigator.less?b=1786571686724" />
+<script type="application/javascript" src="/cms/scripts/common.js?b=1786571686724"></script>
+<script type="application/javascript" src="/cms/scripts/account-bar.js?b=1786571686724"></script>
+<link rel="stylesheet" href="/cms/stylesheet/account-bar.less?b=1786571686724" />
+<script type="application/javascript" src="/team/assda/api/registry.js?name=authInfoService"></script>
+<script type="application/javascript" src="/v2/js/moment.js"></script>
+<script type="application/javascript" src="/v2/mainset/libs/moment/moment-timezone-with-data.min.js"></script>
+<script type="application/javascript" src="/team/assda/api/registry.js"></script>
+<script type="text/javascript">var SC_ShoppingCartButtonComponent_currentShoppingCartSummary = null;
+</script>
+<style type="text/css">
+.CMSComponentTeamLogo {
+    display: flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    overflow: hidden;
+}
+
+.CMSTeamLogo_375177 {
+    flex: 1 1 auto;
+    -webkit-flex: 1 1 auto;
+    display: flex;
+    flex-direction: row;
+    -webkit-flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+</style>
+<script type="application/javascript" src="/cms/scripts/generic-photo.js?b=1786571686724"></script>
+<link rel="stylesheet" href="/cms/stylesheet/team-logo.less?b=1786571686724" />
+<style type="text/css">
+.CMSComponentTeamLogo {
+    color: rgba(45, 104, 196, 1.00);
+}
+
+</style>
+<link rel="stylesheet" href="/cms/stylesheet/contact-us.less?b=1786571686724" />
+<script type="application/javascript" src="/cms/scripts/contact-us.js?b=1786571686724"></script>
+
+        <link rel="stylesheet" type="text/css" href="/cms/templates/1/stylesheet/style.less?v=ucla-blue&t=1762230204697" />
+    <style type="text/css">
+body:not(.CMSAdmin) {
+    background-color: rgba(5, 45, 110, 1.00);
+    background-image: url('/assda/site-settings/background/50677369987-30f9bb1676-k_002006.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+}
+
+.widget_MobileHeader a .AnonId_teamName {
+    color: rgba(7, 28, 148, 1.00);
+}
+
+.widget_MobileHeader,
+.CMSMobileHeader {
+    background-color: #2D68C4;
+    color: rgba(7, 28, 148, 1.00);
+    background-image: url('/assda/site-settings/background-mobilenav/50677369987-30f9bb1676-k_039852.jpg');
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-size: auto;
+}
+
+</style>
+<style type="text/css">
+#cms_Section_topBar > .CMSSectionSlot + .CMSSectionSlot {
+    margin-top: 10px;
+}
+
+#cms_Section_menuBar > .CMSSectionSlot + .CMSSectionSlot {
+    margin-top: 0px;
+}
+
+@media screen and (min-width: 992px) {
+#cms_Section_menuBar > .CMSSectionSlot + .CMSSectionSlot {
+    margin-left: 0px;
+    margin-top: 0px;
+}
+}
+
+@media screen and (min-width: 992px) {
+#cms_Section_menuBar > .CMSSectionSlot.Slot1 {
+    flex: 1 1 0em;
+    -webkit-flex: 1 1 0em;
+}
+}
+
+#cms_Section_footer > .CMSSectionSlot + .CMSSectionSlot {
+    margin-top: 0px;
+}
+
+
+</style></head>
+    <body class="Inner CMSPage_practiceschedule Organ USA USASwimming FlavorSE">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NBHQS26" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+        <div ui-type="MobileHeader" class="CMSMobileHeader"></div>
+        <div id="globalContainer">
+            <div id="globalTopBar" class="CMSDetectEmpty">
+                <div id="cms_Section_topBar" class="CMSSection CMSHorizontalSection CMSEmpty CustomizedStyles" configurable="true" style="     background-color: rgba(5, 45, 110, 1.00);     background-image: url('/assda/default/section-bg/large-logo_047971-tsml-large.png');     background-repeat: no-repeat;     background-attachment: fixed;     background-size: contain;">
+
+</div>
+            </div>
+            <div id="menuBar" class="CMSDetectEmpty">
+                <div id="cms_Section_menuBar" class="CMSSection CMSVerticalSection CustomizedStyles" configurable="false" style="     background-color: rgba(255, 255, 255, 1.00);     background-repeat: repeat;     background-attachment: scroll;     background-size: auto;">
+<div class="CMSSectionSlot Slot0 CMSSingleChild"><div class="CMSComponent CMSComponentMainNavigator NoFlex Component_Id375137 Alone"><div class="MainNavigatorWrapper"><ul class="MainNavigator Menu" flex="1"><li><a href="/team/assda/page/home"><span>Home</span></a></li><li><a href="/team/assda/page/about-cactus-aquatics"><span>About</span></a></li><li><a href="/team/assda/page/cactus-policies"><span>Policies</span></a></li><li><a href="/team/assda/page/gmsc-coaching-staff-"><span>GMSC Coaching Staff </span></a></li><li class="WithChildren"><a href="/team/assda/page/cactus-swim-groups" class="caret"><span>Training Groups</span></a><ul><li><a href="/team/assda/page/cactus-swim-groups/gold"><span>Senior One</span></a></li><li><a href="/team/assda/page/cactus-swim-groups/senior-2"><span>Senior Two</span></a></li><li><a href="/team/assda/page/cactus-swim-groups/senior-3"><span>Senior Three</span></a></li><li><a href="/team/assda/page/cactus-swim-groups/blue"><span>Blue</span></a></li><li><a href="/team/assda/page/cactus-swim-groups/age-group-1"><span>Age Group 1</span></a></li><li><a href="/team/assda/page/cactus-swim-groups/age-group-2-"><span>Age Group 2 </span></a></li></ul></li><li class="Active"><a href="/team/assda/page/practice-schedule"><span>Practice Schedule</span></a></li><li><a href="https://www.gomotionapp.com/team/assda/page/calendar#/team-events/upcoming" target="_self"><span>Events</span></a></li><li><a href="/team/assda/page/team-registration"><span>Team Registration</span></a></li><li><a href="/team/assda/page/news"><span>Club News</span></a></li><li><a href="/team/assda/page/parents-corner"><span>Parent Resources</span></a></li><li><a href="/team/assda/page/training-tips"><span>Athlete Resources </span></a></li><li><a href="/team/assda/page/safe-sport"><span>Safe Sport</span></a></li><li><a href="/team/assda/page/contact-us-"><span>Contact Us </span></a></li></ul></div></div></div>
+<div class="CMSSectionSlot Slot1"><div class="CMSComponent CMSComponentAccountBar NoFlex Component_Id375176">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="AccountBox MenuContainer Right ">
+    <div class="AccountInfo">
+
+        <div class="GuessIconContainer"><icon class="account"></icon></div>
+
+    </div>
+    <ul class="AccountActions Menu NotLogged">
+        
+                <li class="SSO"><a href="&#x2f;Login5.jsp&#x3f;sn&#x3d;www.gomotionapp.com&amp;team&#x3d;assda&amp;_tu_Login_Redirect_&#x3d;&#x25;2Fteam&#x25;2Fassda&#x25;2Fpage&#x25;2Fpractice-schedule&amp;_tu_Login_Error_Redirect_&#x3d;true" class="SignIn"><icon class="login-variant"></icon> <span>Sign in</span></a></li>
+        
+    </ul>
+</div>
+</div><div class="CMSComponent CMSComponentShoppingCartButton NoFlex Component_Id375202"><div class="ShoppingCartButton" ui-type="shoppingcart:ShoppingCartAccessButton" comp-id="375202" ></div></div></div>
+<div class="CMSSectionSlot Slot2 CMSSingleChild"><div class="CMSComponent CMSComponentTeamLogo NoFlex Component_Id375177 Alone"><div class="TeamLogo CMSTeamLogo_375177 Unsized_DESKTOP Unsized_TABLET Unsized_PHONE DefaultSize"><img src="/assda/team-logo/default/small-logo_000591-tsm-thumb.png"  alt="Gold Medal Swim Club" /></div></div></div>
+
+</div>
+            </div>
+            <div id="mainContentWrapper">
+                <div id="mainContent">
+                    <div id="cms_Section_cms_Primary" class="CMSSection CMSVerticalSection" configurable="true" style="">
+<div class="CMSSectionSlot Slot0 CMSSingleChild"><div class="CMSComponent CMSComponentCustomPage NoFlex Component_Id648138 Alone"><div class="CustomPageComponentContent CMSCustomContent223976"><div style="text-align: center;"> 
+ <iframe frameborder="0" height="900" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&amp;single=true" width="100%"></iframe> 
+</div> 
+<div style="text-align: center;">
+  &#xa0; 
+</div> 
+<div style="margin-left: 80px;"> 
+ <p style="margin-right: 0px; margin-bottom: 0px; margin-left: 80px; font-stretch: normal; font-size: 12px; line-height: normal; font-family: Times;"><strong style="font-size: 14px;">AHW</strong><span style="font-size: 14px;"> - </span><a href="https://goo.gl/maps/9RzFiCNPwzMWzc8g9" style="font-size: 14px;">Ahwatukee Community Center</a></p> 
+ <p style="margin-right: 0px; margin-bottom: 0px; margin-left: 80px; font-stretch: normal; font-size: 12px; line-height: normal; font-family: Times;"><span style="font-size:14px;"><strong>CHS</strong> - <a href="https://goo.gl/maps/i8EANQzEfe8YYEda9">Chandler High School&#xa0;</a></span></p> 
+ <p style="margin-right: 0px; margin-bottom: 0px; margin-left: 80px; font-stretch: normal; font-size: 12px; line-height: normal; font-family: Times;"><span style="font-size:14px;"><strong>MHS</strong> - <a href="https://goo.gl/maps/H9evskk3V4JiuLfs5">McClintock High School</a></span></p> 
+ <p style="margin-right: 0px; margin-bottom: 0px; margin-left: 80px; font-stretch: normal; font-size: 12px; line-height: normal; font-family: Times;"><span style="font-size:14px;"><strong>NOZ</strong> - <a href="https://goo.gl/maps/KtAcdQEfeYgFQ2yz5">Nozomi Aquatic Center</a></span></p> 
+ <p style="margin-right: 0px; margin-bottom: 0px; margin-left: 80px; font-stretch: normal; font-size: 12px; line-height: normal; font-family: Times;"><span style="font-size: 14px; font-family: arial, helvetica, sans-serif;">Schedule is subject to change. All changes will be emailed in advance. This page will reflect changes when refreshed.</span><br> <span style="font-size: 12px; font-family: arial, helvetica, sans-serif;"><span style="font-size: 14px;">Holiday training schedules may increase practice time during school breaks.</span></span></p> 
+</div></div></div></div>
+
+</div>
+                </div>
+                <div id="siteFooter">
+                    <div id="footerData">
+                        <div id="cms_Section_footer" class="CMSSection CMSHorizontalSection CustomizedStyles" configurable="true" style="     background-color: rgba(94, 165, 219, 1.00);     background-repeat: no-repeat;     background-attachment: fixed;     background-size: contain;">
+<div class="CMSSectionSlot Slot0 CMSSingleChild"><div class="CMSComponent CMSComponentContactUs NoFlex Component_Id375185 Alone">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div></div>
+
+</div>
+                        <div id="footerTU">
+                            <a href="https://www.gomotionapp.com/" id="tuLink" class="ImageContainer" target="_blank">
+                                <img centerCrop="false" src="/cms/templates/1/data/Motion_Primary_Logo_RGB_Full_Color.png" />
+                            </a>
+                        </div>
+                    </div>
+                    <div id="footerCopyright">
+                        <div id="copyright">
+                            <p>©2026 SportsEngine, LLC. Powered by SportsEngine and owned by Gold Medal Swim Club.</p>
+                        </div>
+                        <div id="footerLinks">
+                            <a href="https://www.versantprivacy.com/privacy" target="_blank">Versant Media Privacy Policy</a>
+                            <span>/</span>
+                            <a href="https://www.versantprivacy.com/privacy/california-consumer-privacy-act" target="_blank">CA Notice</a>
+                            <span>/</span>
+                            <a href="https://versantmedia.com/terms" target="_blank">SportsEngine Terms & Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
