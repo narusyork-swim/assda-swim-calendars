@@ -318,13 +318,16 @@ def parse_practice(practice_text):
         "location": location
     }
 
+
 def parse_time_range(time_text):
 
     time_text = time_text.replace(" ", "")
 
     return {
-        "raw": time_text
-    }
+        "start": time_text.split("-")[0],
+        "end": time_text.split("-")[1]
+        }
+
 
 def main():
 
