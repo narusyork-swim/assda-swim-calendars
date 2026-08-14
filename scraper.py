@@ -274,8 +274,8 @@ def main():
 
                 
                 
-      print("TOTAL EVENTS:", len(events))
-      print(practice_info["time"], parsed_time)
+         print("TOTAL EVENTS:", len(events))
+         print(practice_info["time"], parsed_time)
 
    
         
