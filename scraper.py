@@ -378,13 +378,12 @@ def main():
 
                 practice_info = parse_practice(time_text)
 
+                
+
+
                 parsed_time = parse_time_range(
                     practice_info["time"]
                     )
-
-
-                
-                
 
                 print(
                     team,
@@ -392,6 +391,7 @@ def main():
                     parsed_time,
                     practice_info["location"]
                     )
+                
                 events.append({
                     "team": team,
                     "date": date_text,
