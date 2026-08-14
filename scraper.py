@@ -317,11 +317,14 @@ def parse_practice(practice_text):
         "time": time_part,
         "location": location
     }
+
 def parse_time_range(time_text):
 
     time_text = time_text.replace(" ", "")
 
-    return time_text
+    return {
+        "raw": time_text
+    }
 
 def main():
 
