@@ -383,14 +383,11 @@ def main():
 
                 practice_info = parse_practice(time_text)
 
-                
-
-
                 parsed_time = parse_time_range(
                     practice_info["time"]
                     )
 
-               event_record = {
+                event_record = {
                     "team": team,
                     "date": event_date,
                     "start": parsed_time["start"],
