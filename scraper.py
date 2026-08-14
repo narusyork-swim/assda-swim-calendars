@@ -435,6 +435,9 @@ def main():
 
 
     #dump_rows(soup)
+    print("TOTAL EVENTS:", len(events))
+
+
 
     with open("calendars/page.txt", "w") as f:
         f.write(html)
