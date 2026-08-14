@@ -409,7 +409,7 @@ def main():
 
                 event_date = parse_date(date_text)
 
-                #practice_info = parse_practice(time_text)
+                practice_info = parse_practice(time_text)
 
                 #parsed_time = parse_time_range(
                     #practice_info["time"]
