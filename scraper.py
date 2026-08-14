@@ -510,7 +510,7 @@ def main():
         calendar.events.add(event)
 
     with open("calendars/gmsc_schedule.ics", "w") as f:
-    f.writelines(calendar)
+        f.writelines(calendar)
 
 
 if __name__ == "__main__":
