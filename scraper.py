@@ -390,14 +390,16 @@ def main():
                     practice_info["time"]
                     )
 
-               
-                print(
-                    team,
-                    event_date,
-                    parsed_time["start"],
-                    parsed_time["end"],
-                    practice_info["location"]
-                    )
+               event_record = {
+                    "team": team,
+                    "date": event_date,
+                    "start": parsed_time["start"],
+                    "end": parsed_time["end"],
+                    "location": practice_info["location"]
+                    }
+
+                print(event_record)
+                
 
                 
                 events.append({
