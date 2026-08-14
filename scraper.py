@@ -36,14 +36,8 @@ import time
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
 
 
-
-
-
 OUTPUT_DIR = Path("calendars")
 OUTPUT_DIR.mkdir(exist_ok=True)
-
-
-
 
 def parse_time_range(time_text):
 
@@ -74,21 +68,6 @@ def parse_time_range(time_text):
         "start": start_dt.strftime("%H:%M"),
         "end": end_dt.strftime("%H:%M")
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def fetch_page():
 
@@ -124,25 +103,6 @@ def fetch_page():
     finally:
         driver.quit()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def parse_date(date_text):
     month, day = date_text.split()[-1].split("/")
 
@@ -167,17 +127,8 @@ def parse_practice(practice_text):
     }
 
 
-
-
-
-
-
-
-
 def to_24hr(time_str):
     return datetime.strptime(time_str, "%I:%M%p").strftime("%H:%M")
-
-
 
 
 
@@ -246,16 +197,13 @@ def main():
 
                 if "OFF" in time_text.upper():
                     continue
-                
-
-                
-
+  
                 practice_info = parse_practice(time_text)
-
                 
                 parsed_time = parse_time_range(
                     practice_info["time"]
                     )
+               print(practice_info["time"], parsed_time)
 
                 start_dt, end_dt = build_datetimes(
                     date_text,
@@ -270,12 +218,9 @@ def main():
                     "location": practice_info["location"]
                     })
                 
-           
-
                 
-                
-               print("TOTAL EVENTS:", len(events))
-               print(practice_info["time"], parsed_time)
+                  print("TOTAL EVENTS:", len(events))
+               
 
    
         
