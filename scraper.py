@@ -299,7 +299,7 @@ def main():
             for date_text, time_text in zip(current_dates, times):
 
                 if not time_text:
-                continue
+                    continue
 
                 if "OFF" in time_text.upper():
                 continue
