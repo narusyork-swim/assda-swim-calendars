@@ -405,9 +405,9 @@ def main():
                     }
 
                 #print(
-                    parsed_time["start_raw"],
-                    parsed_time["end_raw"]
-                    )
+                    #parsed_time["start_raw"],
+                    #parsed_time["end_raw"]
+                    #)
                 
                 #print(event_record)
                 
