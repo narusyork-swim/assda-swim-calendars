@@ -323,22 +323,42 @@ def parse_practice(practice_text):
 
 
 
+
+from datetime import datetime
+
+def to_24hr(time_str):
+    return datetime.strptime(time_str, "%I:%M%p").strftime("%H:%M")
+
+
 def parse_time_range(time_text):
 
     time_text = time_text.replace(" ", "")
 
     start_raw, end_raw = time_text.split("-")
 
-    if "am" in end_raw.lower() and "am" not in start_raw.lower():
-        start_raw += "am"
+    end_lower = end_raw.lower()
 
-    if "pm" in end_raw.lower() and "pm" not in start_raw.lower():
-        start_raw += "pm"
+    # If start is missing am/pm, inherit it from end
+    if "am" not in start_raw.lower() and "pm" not in start_raw.lower():
+
+        if "am" in end_lower:
+            start_raw += "am"
+
+        elif "pm" in end_lower:
+            start_raw += "pm"
+
+    # Add :00 if hour only
+    if ":" not in start_raw:
+        start_raw = start_raw.replace("am", ":00am").replace("pm", ":00pm")
+
+    if ":" not in end_raw:
+        end_raw = end_raw.replace("am", ":00am").replace("pm", ":00pm")
 
     return {
-        "start": start_raw,
-        "end": end_raw
+        "start": to_24hr(start_raw),
+        "end": to_24hr(end_raw)
     }
+
 def main():
 
     html = fetch_page()
