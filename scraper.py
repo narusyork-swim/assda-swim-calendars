@@ -47,30 +47,34 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 def parse_time_range(time_text):
 
-    time_text = time_text.replace(" ", "")
+    time_text = time_text.replace(" ", "").lower()
 
     start_raw, end_raw = time_text.split("-")
 
-    end_lower = end_raw.lower()
+    # inherit am/pm from end
+    if not start_raw.endswith(("am", "pm")):
 
-    if "am" not in start_raw.lower() and "pm" not in start_raw.lower():
-
-        if "am" in end_lower:
+        if end_raw.endswith("am"):
             start_raw += "am"
 
-        elif "pm" in end_lower:
+        elif end_raw.endswith("pm"):
             start_raw += "pm"
 
+    # add minutes if missing
     if ":" not in start_raw:
         start_raw = start_raw.replace("am", ":00am").replace("pm", ":00pm")
 
     if ":" not in end_raw:
         end_raw = end_raw.replace("am", ":00am").replace("pm", ":00pm")
 
+    start_dt = datetime.strptime(start_raw, "%I:%M%p")
+    end_dt = datetime.strptime(end_raw, "%I:%M%p")
+
     return {
-        "start": to_24hr(start_raw),
-        "end": to_24hr(end_raw)
+        "start": start_dt.strftime("%H:%M"),
+        "end": end_dt.strftime("%H:%M")
     }
+
 
 
 
