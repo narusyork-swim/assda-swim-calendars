@@ -317,6 +317,12 @@ def parse_practice(practice_text):
         "time": time_part,
         "location": location
     }
+def parse_time_range(time_text):
+
+    time_text = time_text.replace(" ", "")
+
+    return time_text
+
 def main():
 
     html = fetch_page()
@@ -363,17 +369,26 @@ def main():
 
                 if "OFF" in time_text.upper():
                     continue
+                
+
                 event_date = parse_date(date_text)
 
                 practice_info = parse_practice(time_text)
 
+                parsed_time = parse_time_range(
+                    practice_info["time"]
+                    )
+
+
+                
+                
+
                 print(
                     team,
                     event_date,
-                    practice_info["time"],
+                    parsed_time,
                     practice_info["location"]
                     )
-
                 events.append({
                     "team": team,
                     "date": date_text,
