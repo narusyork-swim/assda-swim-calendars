@@ -290,6 +290,33 @@ def parse_practice(practice_text):
         "time": time_part,
         "location": location
     }
+
+from datetime import datetime
+import re
+
+
+def parse_date(date_text):
+    month, day = date_text.split()[-1].split("/")
+
+    return datetime(
+        year=2026,
+        month=int(month),
+        day=int(day)
+    )
+
+
+def parse_practice(practice_text):
+
+    practice_text = practice_text.strip()
+
+    location = practice_text.split()[-1]
+
+    time_part = practice_text.rsplit(" ", 1)[0]
+
+    return {
+        "time": time_part,
+        "location": location
+    }
 def main():
 
     html = fetch_page()
@@ -347,12 +374,21 @@ def main():
     #for e in events[:10]:
         #print(e)
     
-    print("TOTAL EVENTS:", len(events))
-    for e in events[:5]:
-        print(e)
+    #print("TOTAL EVENTS:", len(events))
+    #for e in events[:5]:
+        #print(e)
        
 
+event_date = parse_date(date_text)
 
+practice_info = parse_practice(time_text)
+
+print(
+    team,
+    event_date,
+    practice_info["time"],
+    practice_info["location"]
+)
 
 
     #dump_rows(soup)
