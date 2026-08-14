@@ -302,7 +302,7 @@ def main():
                     continue
 
                 if "OFF" in time_text.upper():
-                continue
+                    continue
 
                 events.append({
                     "team": team,
