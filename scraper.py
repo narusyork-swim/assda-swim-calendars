@@ -203,7 +203,7 @@ def main():
                 parsed_time = parse_time_range(
                     practice_info["time"]
                     )
-               print(practice_info["time"], parsed_time)
+         print(practice_info["time"], parsed_time)
 
                 start_dt, end_dt = build_datetimes(
                     date_text,
