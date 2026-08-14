@@ -388,12 +388,15 @@ def main():
                     practice_info["time"]
                     )
 
+               
                 print(
                     team,
                     event_date,
-                    parsed_time,
+                    parsed_time["start"],
+                    parsed_time["end"],
                     practice_info["location"]
                     )
+
                 
                 events.append({
                     "team": team,
