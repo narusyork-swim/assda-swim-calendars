@@ -478,26 +478,18 @@ def main():
                 
     print("TOTAL EVENTS:", len(events))
 
-    for e in events[:10]:
-        print(e)
+    #for e in events[:10]:
+        #print(e)
         
     
 
    
 
-    #print("TOTAL EVENTS:", len(events))
-    #for e in events[:10]:
-        #print(e)
-    
-    #print("TOTAL EVENTS:", len(events))
-    #for e in events[:5]:
-        #print(e)
-       
 
 
 
     #dump_rows(soup)
-    print("TOTAL EVENTS:", len(events))
+    
 
 
 
