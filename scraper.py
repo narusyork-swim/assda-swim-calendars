@@ -1,21 +1,39 @@
+"""
+ASSDA Swim Calendar Generator
+
+Pipeline:
+1. Download published Google Sheet
+2. Parse schedule table
+3. Extract team practices
+4. Convert to datetime events
+5. Generate:
+   - S1.ics
+   - S2.ics
+   - S3.ics
+   - Blue.ics
+   - AG1.ics
+   - AG2.ics
+   - gmsc_schedule.ics
+
+Last verified: August 2026
+"""
 
 import re
-import requests
 from pathlib import Path
 from datetime import datetime
 
 from bs4 import BeautifulSoup
 from ics import Calendar, Event
-
+from collections import defaultdict
 
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import time
 
+#URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
+
 URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTfEQzPCJt-7dMhkirXClwGe0mIIcWF5HHN6Wle0sUN8K-tkIwnMnsTt9g31XKcsSDrC8DEQiu-URd3/pubhtml?gid=0&single=true"
-
-
 
 
 
@@ -27,22 +45,6 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 
 
-
-def extract_text(html):
-
-    soup = BeautifulSoup(html, "lxml")
-
-    return soup.get_text(" ", strip=True)
-
-
-def create_calendars():
-
-    calendars = {}
-
-    for group in GROUPS:
-        calendars[group] = Calendar()
-
-    return calendars
 
 
 def parse_time_range(time_text):
@@ -89,104 +91,13 @@ def parse_time_range(time_text):
     )
 
 
-def build_events_from_text(text):
-
-    calendars = create_calendars()
-
-    year = datetime.now().year
-
-    date_matches = re.findall(
-        r'(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\s+(\d+/\d+)',
-        text
-    )
-
-    dates = []
-
-    for _, md in date_matches:
-        month, day = md.split("/")
-
-        dates.append(
-            datetime(
-                year,
-                int(month),
-                int(day)
-            )
-        )
-
-    for group in GROUPS:
-
-        pattern = rf"{group}(.*?)(?={'|'.join(GROUPS)}|Posted Schedule|$)"
-
-        blocks = re.findall(
-            pattern,
-            text,
-            re.IGNORECASE,
-        )
-
-        for block in blocks:
-
-            practices = re.findall(
-                r'(\d{{1,2}}(?::\d{{2}})?(?:am|pm)?-\d{{1,2}}(?::\d{{2}})?(?:am|pm))\s+([A-Za-z]+)',
-                block,
-                re.IGNORECASE,
-            )
-
-            for i, (time_range, location) in enumerate(practices):
-
-                if i >= len(dates):
-                    continue
-
-                parsed = parse_time_range(time_range)
-
-                if not parsed:
-                    continue
-
-                sh, sm, eh, em = parsed
-
-                practice_date = dates[i]
-
-                begin = practice_date.replace(
-                    hour=sh,
-                    minute=sm,
-                )
-
-                end = practice_date.replace(
-                    hour=eh,
-                    minute=em,
-                )
-
-                uid = (
-                    f"{group}-"
-                    f"{practice_date:%Y%m%d}-"
-                    f"{time_range}"
-                )
-
-                event = Event()
-
-                event.name = f"{group} Practice"
-                event.begin = begin
-                event.end = end
-                event.location = location
-                event.uid = uid
-
-                calendars[group].events.add(event)
-
-    return calendars
 
 
 
 
 
-def save_calendars(calendars):
 
-    for group, calendar in calendars.items():
 
-        filename = OUTPUT_DIR / f"{group}.ics"
-
-        with open(filename, "w") as f:
-            f.writelines(calendar)
-
-        print(f"Created {filename}")
 
 
 
@@ -240,59 +151,10 @@ def fetch_page():
 
 
 
-def dump_rows(soup):
-
-    table = soup.find("table", class_="waffle")
-    
-
-    rows = table.find_all("tr")
-
-    for i, row in enumerate(rows[:30]):
-        cells = row.find_all(["td", "th"])
-
-        values = [
-            c.get_text(" ", strip=True)
-            for c in cells
-        ]
-
-        print(i, values)
-
-from datetime import datetime
-import re
 
 
-def parse_date(date_text):
-
-    # "Monday 8/3" -> date object
-    month, day = date_text.split()[-1].split("/")
-
-    month = int(month)
-    day = int(day)
-
-    year = 2026
-
-    # handle September dates
-    if month == 9:
-        year = 2026
-
-    return datetime(year, month, day)
 
 
-def parse_practice(practice_text):
-
-    # "6-7:30pm CHS"
-    parts = practice_text.rsplit(" ", 1)
-
-    time_part = parts[0]
-    location = parts[1]
-
-    return {
-        "time": time_part,
-        "location": location
-    }
-
-from datetime import datetime
-import re
 
 
 def parse_date(date_text):
@@ -324,42 +186,13 @@ def parse_practice(practice_text):
 
 
 
-from datetime import datetime
+
 
 def to_24hr(time_str):
     return datetime.strptime(time_str, "%I:%M%p").strftime("%H:%M")
 
 
-def parse_time_range(time_text):
 
-    time_text = time_text.replace(" ", "")
-
-    start_raw, end_raw = time_text.split("-")
-
-    end_lower = end_raw.lower()
-
-    # If start is missing am/pm, inherit it from end
-    if "am" not in start_raw.lower() and "pm" not in start_raw.lower():
-
-        if "am" in end_lower:
-            start_raw += "am"
-
-        elif "pm" in end_lower:
-            start_raw += "pm"
-
-    # Add :00 if hour only
-    if ":" not in start_raw:
-        start_raw = start_raw.replace("am", ":00am").replace("pm", ":00pm")
-
-    if ":" not in end_raw:
-        end_raw = end_raw.replace("am", ":00am").replace("pm", ":00pm")
-
-    return {
-        "start": to_24hr(start_raw),
-        "end": to_24hr(end_raw)
-    }
-
-from datetime import datetime
 
 
 def build_datetimes(date_text, start_time, end_time):
@@ -429,31 +262,10 @@ def main():
                     continue
                 
 
-                event_date = parse_date(date_text)
+                
 
                 practice_info = parse_practice(time_text)
 
-                #parsed_time = parse_time_range(
-                    #practice_info["time"]
-                    #)
-
-                #event_record = {
-                    #"team": team,
-                    #"date": event_date,
-                    #"start": parsed_time["start"],
-                    #"end": parsed_time["end"],
-                    #"location": practice_info["location"]
-                    #}
-                
-
-                #print(
-                    #parsed_time["start_raw"],
-                    #parsed_time["end_raw"]
-                    #)
-                
-                #print(event_record)
-
-                #practice_info = parse_practice(time_text)
                 
                 parsed_time = parse_time_range(
                     practice_info["time"]
@@ -478,8 +290,7 @@ def main():
                 
     print("TOTAL EVENTS:", len(events))
 
-    #for e in events[:10]:
-        #print(e)
+   
         
     
 
@@ -488,10 +299,9 @@ def main():
 
 
 
-    #dump_rows(soup)
     
 
-    from ics import Calendar, Event
+    
 
     calendar = Calendar()
 
@@ -513,8 +323,8 @@ def main():
         f.writelines(calendar)
     print("ICS file written")
 
-    from collections import defaultdict
-    from ics import Calendar, Event
+    
+    
 
     team_calendars = defaultdict(Calendar)
 
