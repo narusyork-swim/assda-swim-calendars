@@ -257,6 +257,39 @@ def dump_rows(soup):
 
         print(i, values)
 
+from datetime import datetime
+import re
+
+
+def parse_date(date_text):
+
+    # "Monday 8/3" -> date object
+    month, day = date_text.split()[-1].split("/")
+
+    month = int(month)
+    day = int(day)
+
+    year = 2026
+
+    # handle September dates
+    if month == 9:
+        year = 2026
+
+    return datetime(year, month, day)
+
+
+def parse_practice(practice_text):
+
+    # "6-7:30pm CHS"
+    parts = practice_text.rsplit(" ", 1)
+
+    time_part = parts[0]
+    location = parts[1]
+
+    return {
+        "time": time_part,
+        "location": location
+    }
 def main():
 
     html = fetch_page()
