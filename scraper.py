@@ -274,7 +274,8 @@ def main():
 
                 
                 
-    print("TOTAL EVENTS:", len(events))
+      print("TOTAL EVENTS:", len(events))
+      print(practice_info["time"], parsed_time)
 
    
         
@@ -332,10 +333,7 @@ def main():
         with open(filename, "w") as f:
             f.writelines(calendar)
    if team == "AG1":
-       print(
-           practice_info["time"],
-           parsed_time
-       )
+       
 
 if __name__ == "__main__":
     main()
