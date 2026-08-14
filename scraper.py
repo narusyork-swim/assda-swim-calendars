@@ -310,15 +310,19 @@ def main():
                     "practice": time_text
                 })
 
+    #print("TOTAL EVENTS:", len(events))
+    #for e in events[:10]:
+        #print(e)
+    
     print("TOTAL EVENTS:", len(events))
-    for e in events[:10]:
-        print(e)
+    for e in events[:5]:
+    print(e)
        
 
 
 
 
-    dump_rows(soup)
+    #dump_rows(soup)
 
     with open("calendars/page.txt", "w") as f:
         f.write(html)
