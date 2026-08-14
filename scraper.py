@@ -404,7 +404,7 @@ def main():
                     "location": practice_info["location"]
                     }
 
-                print(
+                #print(
                     parsed_time["start_raw"],
                     parsed_time["end_raw"]
                     )
@@ -418,7 +418,11 @@ def main():
                     "date": date_text,
                     "practice": time_text
                     })
+    print("TOTAL EVENTS:", len(events))
 
+    for e in events[:10]:
+        print(e)
+        
     #print("TOTAL EVENTS:", len(events))
     #for e in events[:10]:
         #print(e)
