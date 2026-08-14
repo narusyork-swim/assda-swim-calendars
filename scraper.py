@@ -491,10 +491,26 @@ def main():
     #dump_rows(soup)
     
 
+    from ics import Calendar, Event
 
+    calendar = Calendar()
 
-    with open("calendars/page.txt", "w") as f:
-        f.write(html)
+    for e in events:
+
+        event = Event()
+
+        event.name = f"{e['team']} Practice"
+
+        event.begin = e["start_dt"]
+
+        event.end = e["end_dt"]
+
+        event.location = e["location"]
+
+        calendar.events.add(event)
+
+    with open("calendars/gmsc_schedule.ics", "w") as f:
+    f.writelines(calendar)
 
 
 if __name__ == "__main__":
