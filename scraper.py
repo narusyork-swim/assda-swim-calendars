@@ -359,6 +359,28 @@ def parse_time_range(time_text):
         "end": to_24hr(end_raw)
     }
 
+from datetime import datetime
+
+
+def build_datetimes(date_text, start_time, end_time):
+
+    date_obj = parse_date(date_text)
+
+    start_hour, start_minute = map(int, start_time.split(":"))
+    end_hour, end_minute = map(int, end_time.split(":"))
+
+    start_dt = date_obj.replace(
+        hour=start_hour,
+        minute=start_minute
+    )
+
+    end_dt = date_obj.replace(
+        hour=end_hour,
+        minute=end_minute
+    )
+
+    return start_dt, end_dt
+    
 def main():
 
     html = fetch_page()
@@ -433,17 +455,23 @@ def main():
 
                 #practice_info = parse_practice(time_text)
                 
-                parsed_time = parse_time_range(
-                    practice_info["time"]
+                #parsed_time = parse_time_range(
+                    #practice_info["time"]
+                    #)
+
+                start_dt, end_dt = build_datetimes(
+                    date_text,
+                    parsed_time["start"],
+                    parsed_time["end"]
                     )
 
                 events.append({
                     "team": team,
-                    "date": date_text,
-                    "start": parsed_time["start"],
-                    "end": parsed_time["end"],
+                    "start_dt": start_dt,
+                    "end_dt": end_dt,
                     "location": practice_info["location"]
                     })
+                
            
 
                 
