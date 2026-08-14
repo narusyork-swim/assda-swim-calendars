@@ -363,12 +363,22 @@ def main():
 
                 if "OFF" in time_text.upper():
                     continue
+                event_date = parse_date(date_text)
+
+                practice_info = parse_practice(time_text)
+
+                print(
+                    team,
+                    event_date,
+                    practice_info["time"],
+                    practice_info["location"]
+                    )
 
                 events.append({
                     "team": team,
                     "date": date_text,
                     "practice": time_text
-                })
+                    })
 
     #print("TOTAL EVENTS:", len(events))
     #for e in events[:10]:
@@ -379,16 +389,6 @@ def main():
         #print(e)
        
 
-event_date = parse_date(date_text)
-
-practice_info = parse_practice(time_text)
-
-print(
-    team,
-    event_date,
-    practice_info["time"],
-    practice_info["location"]
-)
 
 
     #dump_rows(soup)
