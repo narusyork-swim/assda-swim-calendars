@@ -395,14 +395,14 @@ def main():
                     practice_info["time"]
                     )
 
-                
                 event_record = {
                     "team": team,
                     "date": event_date,
-                    "start_raw": parsed_time["start_raw"],
-                    "end_raw": parsed_time["end_raw"],
+                    "start": parsed_time["start"],
+                    "end": parsed_time["end"],
                     "location": practice_info["location"]
                     }
+                
 
                 #print(
                     #parsed_time["start_raw"],
