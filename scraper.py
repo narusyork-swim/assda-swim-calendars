@@ -455,9 +455,9 @@ def main():
 
                 #practice_info = parse_practice(time_text)
                 
-                #parsed_time = parse_time_range(
-                    #practice_info["time"]
-                    #)
+                parsed_time = parse_time_range(
+                    practice_info["time"]
+                    )
 
                 start_dt, end_dt = build_datetimes(
                     date_text,
