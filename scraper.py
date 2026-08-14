@@ -319,16 +319,18 @@ def parse_practice(practice_text):
     }
 
 
+
+
 def parse_time_range(time_text):
 
     time_text = time_text.replace(" ", "")
 
+    start_raw, end_raw = time_text.split("-")
+
     return {
-        "start": time_text.split("-")[0],
-        "end": time_text.split("-")[1]
+        "start": start_raw,
+        "end": end_raw
         }
-
-
 def main():
 
     html = fetch_page()
