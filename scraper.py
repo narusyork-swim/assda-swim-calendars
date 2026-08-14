@@ -447,6 +447,15 @@ def main():
     for e in events[:10]:
         print(e)
         
+    parsed_time = parse_time_range(
+    practice_info["time"]
+    )
+
+    print(
+        parsed_time["start"],
+        parsed_time["end"]
+        )
+
     #print("TOTAL EVENTS:", len(events))
     #for e in events[:10]:
         #print(e)
