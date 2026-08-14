@@ -513,6 +513,29 @@ def main():
         f.writelines(calendar)
     print("ICS file written")
 
+    from collections import defaultdict
+    from ics import Calendar, Event
+
+    team_calendars = defaultdict(Calendar)
+
+    for e in events:
+
+        event = Event()
+        event.name = f"{e['team']} Practice"
+        event.begin = e["start_dt"]
+        event.end = e["end_dt"]
+        event.location = e["location"]
+
+        team_calendars[e["team"]].events.add(event)
+
+# Write one file per team
+    for team, calendar in team_calendars.items():
+
+        filename = f"calendars/{team}.ics"
+
+        with open(filename, "w") as f:
+            f.writelines(calendar)
+
 
 if __name__ == "__main__":
     main()
