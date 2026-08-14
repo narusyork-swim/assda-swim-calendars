@@ -322,15 +322,22 @@ def parse_practice(practice_text):
 
 
 
+
 def parse_time_range(time_text):
 
     time_text = time_text.replace(" ", "")
 
     start_raw, end_raw = time_text.split("-")
 
+    if "am" in end_raw.lower() and "am" not in start_raw.lower():
+        start_raw += "am"
+
+    if "pm" in end_raw.lower() and "pm" not in start_raw.lower():
+        start_raw += "pm"
+
     return {
-        "start_raw": start_raw,
-        "end_raw": end_raw
+        "start": start_raw,
+        "end": end_raw
     }
 def main():
 
