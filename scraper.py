@@ -511,6 +511,7 @@ def main():
 
     with open("calendars/gmsc_schedule.ics", "w") as f:
         f.writelines(calendar)
+    print("ICS file written")
 
 
 if __name__ == "__main__":
