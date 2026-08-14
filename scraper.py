@@ -45,50 +45,32 @@ OUTPUT_DIR.mkdir(exist_ok=True)
 
 
 
-
-
 def parse_time_range(time_text):
 
-    time_text = time_text.strip().lower()
+    time_text = time_text.replace(" ", "")
 
-    match = re.match(
-        r'(\d{1,2})(?::(\d{2}))?(am|pm)?-'
-        r'(\d{1,2})(?::(\d{2}))?(am|pm)',
-        time_text,
-    )
+    start_raw, end_raw = time_text.split("-")
 
-    if not match:
-        return None
+    end_lower = end_raw.lower()
 
-    sh, sm, sap, eh, em, eap = match.groups()
+    if "am" not in start_raw.lower() and "pm" not in start_raw.lower():
 
-    if sap is None:
-        sap = eap
+        if "am" in end_lower:
+            start_raw += "am"
 
-    start_hour = int(sh)
-    start_minute = int(sm or 0)
+        elif "pm" in end_lower:
+            start_raw += "pm"
 
-    end_hour = int(eh)
-    end_minute = int(em or 0)
+    if ":" not in start_raw:
+        start_raw = start_raw.replace("am", ":00am").replace("pm", ":00pm")
 
-    if sap == "pm" and start_hour < 12:
-        start_hour += 12
+    if ":" not in end_raw:
+        end_raw = end_raw.replace("am", ":00am").replace("pm", ":00pm")
 
-    if sap == "am" and start_hour == 12:
-        start_hour = 0
-
-    if eap == "pm" and end_hour < 12:
-        end_hour += 12
-
-    if eap == "am" and end_hour == 12:
-        end_hour = 0
-
-    return (
-        start_hour,
-        start_minute,
-        end_hour,
-        end_minute,
-    )
+    return {
+        "start": to_24hr(start_raw),
+        "end": to_24hr(end_raw)
+    }
 
 
 
