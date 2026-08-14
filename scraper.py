@@ -389,19 +389,19 @@ def main():
 
                 event_date = parse_date(date_text)
 
-                practice_info = parse_practice(time_text)
+                #practice_info = parse_practice(time_text)
 
-                parsed_time = parse_time_range(
-                    practice_info["time"]
-                    )
+                #parsed_time = parse_time_range(
+                    #practice_info["time"]
+                    #)
 
-                event_record = {
-                    "team": team,
-                    "date": event_date,
-                    "start": parsed_time["start"],
-                    "end": parsed_time["end"],
-                    "location": practice_info["location"]
-                    }
+                #event_record = {
+                    #"team": team,
+                    #"date": event_date,
+                    #"start": parsed_time["start"],
+                    #"end": parsed_time["end"],
+                    #"location": practice_info["location"]
+                    #}
                 
 
                 #print(
@@ -410,14 +410,18 @@ def main():
                     #)
                 
                 #print(event_record)
-                
 
-                
+                practice_info = parse_practice(time_text)
+
                 events.append({
                     "team": team,
                     "date": date_text,
-                    "practice": time_text
+                    "practice": time_text,
+                    "location": practice_info["location"]
                     })
+
+                
+                
     print("TOTAL EVENTS:", len(events))
 
     for e in events[:10]:
