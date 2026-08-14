@@ -393,8 +393,8 @@ def main():
 
     #dump_rows(soup)
 
-with open("calendars/page.txt", "w") as f:
-    f.write(html)
+    with open("calendars/page.txt", "w") as f:
+        f.write(html)
 
 
 if __name__ == "__main__":
